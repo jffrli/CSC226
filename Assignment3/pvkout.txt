@@ -1,0 +1,2 @@
+Reading input values from Test_files_sparse\ewg_100vertices_4.txt.
+Does Prim MST = Kruskal MST? true

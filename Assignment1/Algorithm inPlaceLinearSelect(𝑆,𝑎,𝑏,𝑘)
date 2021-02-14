@@ -1,0 +1,50 @@
+Algorithm inPlaceLinearSelect(𝑆,𝑎,𝑏,𝑘)
+Input: An array, 𝑆, of distinct elements; integers 𝑎 and 𝑏 such 𝑎 ≤ 𝑏; and integer 𝑘∈[𝑎+1, 𝑏+1]
+Output: The 𝑘th smallest element of 𝑆
+	if n = 1 then
+		return S
+	p <- pickCleverPivot(S)
+	partition(a,b,S,p)
+	if k < p then
+		return inPlaceLinearSelect(S,a,p,K)
+	else if k > p
+		return inPlaceLinearSelect(S,p+1,b,K)
+	else
+		return p
+
+Algorithm pickCleverPivot(𝑆, a, b)
+Input: An array, 𝑆, containing n elements; indices a and b indicating the beginning and end of the subarray
+Output: The median of medians of subsets of size 7
+	for i from a to b, i incrementing by 7 //sorting in groups of 7
+		for j from i to i+6
+			for k from j+1 to i+6
+				if S[j] > S[k]
+					Swap S[j] and S[k]
+	x <- a
+	y <- a+3 //index of the first median
+	while y <= b //moving medians to the beginning
+		Swap S[x] and S[y]
+		x <- x+1 
+		y <- y+7 //next median
+
+	for d from a to x-1 //sorting the medians, x-1 is the index of the last median
+		for e from d+1 to x-1
+			if S[d] > S[e]
+				Swap S[d] and S[e]
+	return (x-1-a)/2 + a //returns the middle element of the sorted sequence of medians
+
+Algorithm partition(a,b,S,p)
+Input: An array, 𝑆, containing n elements; indices a and b indicating the beginning and end of the subarray; index p, indicating a previously chosen pivot
+Output: The partitioned index of the previous selected pivot element
+	Swap S[p] and S[b]
+	l <- a
+	r <- b-1
+	while l <= r
+		while l <= r and S[l] <= S[b]
+			l <- l+1
+		while r >= l and S[r] >= S[b]
+			r <- r-1
+		if l < r
+			Swap S[l] and S[r]
+	Swap S[l] and S[b]
+	return l

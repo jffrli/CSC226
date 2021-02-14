@@ -1,0 +1,9 @@
+Algorithm matrixDFS(𝐺,𝑣)
+	Input: A graph 𝐺,with 𝑛 vertices labeled 0,...,𝑛−1,represented as an adjacency matrix and a starting vertex 𝑣.
+	Output: An integer array of size 𝑛, containing the preorder labelling of the vertices.
+		P[0] <- v
+		for i from 0 to n do
+			if G[v][i] is not 0 then
+				if i in P then skip
+				else append DFS(G,i) to P
+		return P

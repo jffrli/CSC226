@@ -1,0 +1,33 @@
+put(k,v):
+	i <- h(k)
+	j <- 0
+	while A[i] != NULL or A[i] = SpecialMarker do
+		if A[i].key = k then
+			A[i] <- (k,v) //replace the old value with same key
+		j <- j+1
+		i <- h(k) + j*j
+	A[i] <- (k,v) //found a nice empty index
+
+
+get(k):
+	i <- h(k)
+	j <- 0
+	while A[i] != NULL do
+		if (A[i].key = k) then
+			return A[i]
+		j <- j+1
+		i <- h(k) +j*j
+	return NULL //not found
+
+
+remove(k):
+	i <- h(k)
+	j <- 0
+	while A[i] != NULL do
+		if (A[i].key = k) then
+			temp <- A[i]
+			A[i] <- SpecialMarker //a non-NULL key that will never be used by regular values to represent a removed element
+			return temp
+		j <- j+1
+		i <- h(k) + j*j
+	return NULL //key not found
